@@ -38,6 +38,11 @@ public class ShopHologram {
     }
 
     public void updateHologramRows() {
+        // Guard against null hologram to prevent NullPointerException in newer Minecraft versions
+        if (hologram == null) {
+            return;
+        }
+
         hologram.setViewDistance(config.getInt("shops.holograms.range"));
         hologram.setSeeTrough(config.getBoolean("shops.holograms.see-through-walls"));
         String owner = Bukkit.getOfflinePlayer(shop.getOwnerId()).getName();
